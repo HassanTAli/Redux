@@ -1,20 +1,20 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import classes from './Header.module.css';
-import { authActions } from '../store/index';
+import { authActions } from '../store/auth-silce';
 
 const Header = () => {
   const dispatch = useDispatch()
-  const isAuth = useSelector(state => state.auth.isAuthenticed)
+  const isAuth = useSelector(state => state.auth.isAuthenticated)
 
   const logoutHandler = () => {
-    dispatch(authActions.logout)
+    dispatch(authActions.logout())
   }
 
   return (
     <header className={classes.header}>
       <h1>Redux Auth</h1>
-      {isAuth && <nav>
+      {isAuth && (<nav>
         <ul>
           <li>
             <a href='/'>My Products</a>
@@ -26,7 +26,7 @@ const Header = () => {
             <button onClick={logoutHandler}>Logout</button>
           </li>
         </ul>
-      </nav>}
+      </nav>)}
 
     </header>
   );
